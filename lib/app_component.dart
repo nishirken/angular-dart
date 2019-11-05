@@ -1,9 +1,14 @@
 import 'package:angular/angular.dart';
+import 'package:angular_forms/angular_forms.dart';
+import 'hero.dart';
 
 @Component(
   selector: 'my-app',
-  template: '<h1>{{name}}</h1>',
+  templateUrl: './app_component.html',
+  directives: [formDirectives],
 )
 class AppComponent {
-  var name = 'A';
+  var title = 'Hello';
+
+  Hero hero = Hero(1, 'Windstorm');
 }
