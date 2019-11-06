@@ -1,28 +1,13 @@
 import 'package:angular/angular.dart';
-import 'src/hero/hero.dart';
-import 'src/hero/hero_component.dart';
-import 'heroes_service.dart';
+import 'package:angular_router/angular_router.dart';
+import 'src/routes.dart';
 
 @Component(
   selector: 'my-app',
   templateUrl: 'app_component.html',
-  styleUrls: ['app_component.css'],
-  directives: [coreDirectives, HeroComponent],
-  providers: [ClassProvider(HeroesService)]
+  directives: [routerDirectives],
+  exports: [RoutePaths, Routes],
 )
-class AppComponent implements OnInit {
-  var title = 'Hello';
-  Hero selectedHero;
-  List<Hero> heroes = [];
-
-  final HeroesService _heroesService;
-
-  AppComponent(this._heroesService);
-
-  void select(Hero hero) => selectedHero = hero;
-
-  @override
-  Future<void> ngOnInit() async {
-    heroes = await _heroesService.getAllSlowly();
-  }
+class AppComponent {
+  final title = 'Tour of Heroes';
 }

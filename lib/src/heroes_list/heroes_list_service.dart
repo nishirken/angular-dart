@@ -1,7 +1,7 @@
-import 'src/hero/heroes_fixture.dart';
-import 'src/hero/hero.dart';
+import '../hero/heroes_fixture.dart';
+import '../hero/hero.dart';
 
-class HeroesService {
+class HeroesListService {
   Future<List<Hero>> getAll() async => mockHeroes;
 
   Future<List<Hero>> getAllSlowly() {
