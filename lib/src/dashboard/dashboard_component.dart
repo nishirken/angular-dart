@@ -6,6 +6,7 @@ import 'package:angular_app/src/heroes_list/heroes_list_service.dart';
   selector: 'my-dashboard',
   templateUrl: 'dashboard_component.html',
   directives: [coreDirectives],
+  providers: [HeroesListService]
 )
 class DashboardComponent implements OnInit {
   List<Hero> heroes;
@@ -16,6 +17,6 @@ class DashboardComponent implements OnInit {
 
   @override
   void ngOnInit() async {
-    heroes = (await _heroesService.getAllSlowly()).skip(1).take(4).toList();
+    heroes = (await _heroesService.getAll()).skip(1).take(4).toList();
   }
 }

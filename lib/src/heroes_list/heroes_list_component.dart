@@ -1,14 +1,16 @@
 import 'package:angular/angular.dart';
-import 'package:angular_app/src/hero/hero_component.dart';
 import 'package:angular_app/src/hero/hero.dart';
+import 'package:angular_router/angular_router.dart';
+import 'package:angular_app/src/routes.dart';
 import 'heroes_list_service.dart';
 
 @Component(
   selector: 'heroes-list',
   templateUrl: 'heroes_list_component.html',
   styleUrls: ['heroes_list_component.css'],
-  directives: [coreDirectives, HeroComponent],
-  providers: [ClassProvider(HeroesListService)]
+  directives: [coreDirectives, routerDirectives],
+  providers: [ClassProvider(HeroesListService)],
+  exports: [RoutePaths],
 )
 class HeroesListComponent implements OnInit {
   List<Hero> heroes;
@@ -19,8 +21,10 @@ class HeroesListComponent implements OnInit {
 
   HeroesListComponent(this._heroesListService);
 
+  String heroUrl(int id) => RoutePaths.hero.toUrl(parameters: {idParam: '$id'});
+
   @override
   Future<void> ngOnInit() async {
-    heroes = await _heroesListService.getAllSlowly();
+    heroes = await _heroesListService.getAll();
   }
 }

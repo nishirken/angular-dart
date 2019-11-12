@@ -9,6 +9,7 @@
       width: 15em;
     }
     .heroes li {
+      display: flex;
       cursor: pointer;
       position: relative;
       left: 0;
@@ -17,6 +18,9 @@
       padding: .3em 0;
       height: 1.6em;
       border-radius: 4px;
+    }
+    .heroes a {
+      text-decoration: none;
     }
     .heroes li.selected:hover {
       color: white;

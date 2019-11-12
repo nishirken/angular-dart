@@ -7,4 +7,8 @@ class HeroesListService {
   Future<List<Hero>> getAllSlowly() {
     return Future.delayed(Duration(seconds: 2), getAll);
   }
+
+  Future<Hero> get(int id) async {
+    return (await getAll()).firstWhere((hero) => hero.id == id);
+  }
 }
