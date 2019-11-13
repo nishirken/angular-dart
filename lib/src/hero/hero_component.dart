@@ -8,6 +8,7 @@ import 'package:angular_app/src/heroes_list/heroes_list_service.dart';
 @Component(
   selector: 'my-hero',
   templateUrl: 'hero_component.html',
+  styleUrls: ['hero_component.css'],
   directives: [coreDirectives, formDirectives],
   providers: [HeroesListService]
 )

@@ -2,7 +2,9 @@
 <div class="grid grid-pad">
   <div *ngFor="let hero of heroes">
     <div class="module hero">
-      <h4>{{hero.name}}</h4>
+      <a [routerLink]="heroUrl(hero.id)">
+        <h4>{{hero.name}}</h4>
+      </a>
     </div>
   </div>
 </div>
