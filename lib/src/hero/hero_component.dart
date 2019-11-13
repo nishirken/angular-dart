@@ -24,7 +24,12 @@ class HeroComponent implements OnActivate {
     return id == null ? null : int.tryParse(id);
   }
 
-  void goBack() => _location.back();
+  void _goBack() => _location.back();
+
+  Future<void> save() async {
+    await _heroesListService.update(hero);
+    _goBack();
+  }
 
   @override
   void onActivate(_, RouterState current) async {
