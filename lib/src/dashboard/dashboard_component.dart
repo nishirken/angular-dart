@@ -1,7 +1,7 @@
 import 'package:angular/angular.dart';
+import 'package:angular_app/hero_service.dart';
 import 'package:angular_router/angular_router.dart';
 import 'package:angular_app/src/hero/hero.dart';
-import 'package:angular_app/src/heroes_list/heroes_list_service.dart';
 import 'package:angular_app/src/routes.dart';
 
 @Component(
@@ -9,19 +9,19 @@ import 'package:angular_app/src/routes.dart';
   templateUrl: 'dashboard_component.html',
   styleUrls: ['dashboard_component.css'],
   directives: [coreDirectives, routerDirectives],
-  providers: [HeroesListService]
+  providers: [HeroService]
 )
 class DashboardComponent implements OnInit {
   List<Hero> heroes;
 
-  final HeroesListService _heroesService;
+  final HeroService _heroService;
 
-  DashboardComponent(this._heroesService);
+  DashboardComponent(this._heroService);
 
   String heroUrl(int id) => RoutePaths.hero.toUrl(parameters: {idParam: '$id'});
 
   @override
   void ngOnInit() async {
-    heroes = (await _heroesService.getAll()).skip(1).take(4).toList();
+    heroes = (await _heroService.getAll()).skip(1).take(4).toList();
   }
 }

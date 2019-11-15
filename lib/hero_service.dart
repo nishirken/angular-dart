@@ -5,10 +5,11 @@ import 'package:angular_app/src/hero/hero.dart';
 
 const _heroesUrl = 'api/heroes';
 
-class HeroesListService {
+class HeroService {
+  static final _headers = {'Content-Type': 'application/json'};
   final Client _http;
 
-  HeroesListService(this._http);
+  HeroService(this._http);
 
   Future<List<Hero>> getAll() async {
     try {
@@ -31,5 +32,16 @@ class HeroesListService {
 
   Future<Hero> get(int id) async {
     return (await getAll()).firstWhere((hero) => hero.id == id);
+  }
+
+  Future<Hero> update(Hero hero) async {
+    try {
+      final url = '$_heroesUrl/${hero.id}';
+      final response =
+          await _http.put(url, headers: _headers, body: json.encode(hero));
+      return Hero.fromJson(_extractData(response));
+    } catch (e) {
+      throw _handleError(e);
+    }
   }
 }
